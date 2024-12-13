@@ -1,4 +1,4 @@
-import { useLoaderData} from "react-router-dom";
+import { Link, useLoaderData} from "react-router-dom";
 
 
 const JobDetails = () => {
@@ -25,6 +25,8 @@ const JobDetails = () => {
     
             <p className="font-semibold">Responsibilities:</p>
             {loader.responsibilities.map((res, idx) => <li key={idx}>{res}</li>)}
+
+            <Link to={`/jobApply/${loader._id}`}><button className="btn btn-secondary">Apply Now</button></Link>
 
         </div>
     );
