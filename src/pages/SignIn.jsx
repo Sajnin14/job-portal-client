@@ -3,11 +3,18 @@ import signInLottie from '../assets/signIn.json'
 import { useContext } from "react";
 import AuthContext from "../ContextProvider/AuthContext";
 import Goog from "./Goog";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 
 const SignIn = () => {
 
     const {signInUser} = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const path = location?.state || '/'
+    // console.log(location);
 
     const handleSignIn = e => {
         e.preventDefault();
@@ -22,6 +29,7 @@ const SignIn = () => {
         signInUser(email, password)
         .then(res => {
             console.log(res.user);
+            navigate(path);
         })
         .catch(err => {
             alert(err.message);
